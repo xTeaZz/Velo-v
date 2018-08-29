@@ -2,13 +2,12 @@
 <html lang="fr" dir="ltr">
   <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1.0">
     <link rel="shortcut icon" href="images/velov-icon.png">
     <title>Vélo'V</title>
     <link rel="stylesheet" href="css/all.min.css">
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/leaflet.css" />
-    <script src="js/leaflet.js"></script>
   </head>
   <body>
   <header>
@@ -18,18 +17,19 @@
       </a>
     </nav>
   </header>
-  <section>
+  <section class="container">
     <div class="slide">
 
     </div>
   </section>
-  <section>
-    <div class="">
+  <section class="container">
+    <div id="map">
 
     </div>
   </section>
   <footer>
     <script src="js/main.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBA0BOdjARgY-xU2z8SppPnx3PJlJPz9ug&callback=initMap"async defer></script>
     <script src="js/bootstrap.min.js"></script>
   </footer>
   </body>

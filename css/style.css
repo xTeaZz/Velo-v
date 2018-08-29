@@ -1,3 +1,8 @@
 .slide {
+  height: 450px;
   width: 100%;
+}
+
+#map {
+  height: 500px;
 }
