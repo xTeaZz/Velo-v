@@ -12,18 +12,15 @@ document.addEventListener("keydown", function(e) {
   }
 });
 
-document.addEventListener("click", function(e) {
-  if (e.keyCode == '37') {
-    slideShow.transition(-1)
-  } else if (e.keyCode == '39') {
-    slideShow.transition(1)
-  }
-});
+var buttonleft = document.getElementById("buttonleft");
+var buttonright = document.getElementById("buttonright");
 
-/*
-boutonElt.addEventListener("click", transition(img = 1));
-boutonElt.addEventListener("click", transition(img = 0));
-*/
+buttonleft.addEventListener("click", function() {
+  slideShow.transition(-1)
+});
+buttonright.addEventListener("click", function() {
+  slideShow.transition(1)
+});
 
 var map;
 function initMap() {
