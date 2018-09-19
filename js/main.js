@@ -1,31 +1,18 @@
 picArray = ["images/velov1.jpg", "images/velov2.jpg", "images/velov3.jpg"];
 textArray = ["test1","test2", "test3"]
-var Diaporama = {
-  init: function(tableauImage, tableauTexte){
-    this.tabPic = tableauImage;
-    this.tabText = tableauTexte;
-    this.indice = 0;
-    document.getElementById('slidepic').src = this.tabPic[this.indice];
-    document.getElementById('caption').textContent = this.tabText[this.indice];
-  },
-
-   transition: function(deplacement) {
-    this.indice = this.indice + deplacement;
-    if (this.indice < 0) {
-      this.indice = 0;
-    }
-    if (this.indice > (this.tabPic.length - 1)) {
-      this.indice = this.tabPic.length - 1;
-    }
-    document.getElementById('slidepic').src = this.tabPic[this.indice];
-    document.getElementById('caption').textContent = this.tabText[this.indice];
-  }
-};
 
 var slideShow = Object.create(Diaporama);
 slideShow.init(picArray, textArray);
 
 document.addEventListener("keydown", function(e) {
+  if (e.keyCode == '37') {
+    slideShow.transition(-1)
+  } else if (e.keyCode == '39') {
+    slideShow.transition(1)
+  }
+});
+
+document.addEventListener("click", function(e) {
   if (e.keyCode == '37') {
     slideShow.transition(-1)
   } else if (e.keyCode == '39') {

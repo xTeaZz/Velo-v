@@ -1,5 +1,5 @@
-.slide {
-  height: 100vh;
+#slide {
+  height: 87.4vh;
   width: 100%;
 }
 
@@ -9,30 +9,42 @@
  position: relative;
 }
 
-#slidepic::before {
-  font-family: FontAwesome;
-  content: "\f104";
+#buttonleft {
+  left: 6em;
+}
+
+#buttonright {
+  right: 6em;
+}
+
+.button {
   position: absolute;
+  top: 50%;
+  z-index: 2;
+  background-color: #343a40!important;
+  border: none;
+  color: #fff;
+  height: 55px;
+  width: 55px;
+  border-radius: 50%;
   cursor: pointer;
 }
 
-#slidepic::after {
-  font-family: FontAwesome;
-  content: "\f105";
+.arrow {
   position: absolute;
-  cursor: pointer;
+  font-size: 3em;
+  top: -14px;
+  right: 0;
+  left: 0;
 }
 
 #caption {
-
-}
-
-#previous {
-
-}
-
-#next {
-
+	position:absolute;
+	left:0; right:0; bottom: 0px;
+	padding: 20px;
+	margin:0;
+	text-align:center;
+	background: rgba(255,255,255,0.8);
 }
 
 #map {
