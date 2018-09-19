@@ -1,8 +1,40 @@
 .slide {
-  height: 450px;
+  height: 100vh;
   width: 100%;
 }
 
+#slidepic {
+ width:100% ;
+ height:100% ;
+ position: relative;
+}
+
+#slidepic::before {
+  font-family: FontAwesome;
+  content: "\f104";
+  position: absolute;
+  cursor: pointer;
+}
+
+#slidepic::after {
+  font-family: FontAwesome;
+  content: "\f105";
+  position: absolute;
+  cursor: pointer;
+}
+
+#caption {
+
+}
+
+#previous {
+
+}
+
+#next {
+
+}
+
 #map {
-  height: 500px;
+  height: 100vh;
 }
