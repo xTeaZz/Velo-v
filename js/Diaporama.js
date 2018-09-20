@@ -7,6 +7,15 @@ var Diaporama = {
     document.getElementById('caption').textContent = this.tabText[this.indice];
   },
 
+  initInterval: function(interval) {
+    this.interval = interval;
+  },
+
+  automatic: function() {
+    this.transition(+1);
+    clearInterval(this.interval);
+  },
+
    transition: function(deplacement) {
     this.indice = this.indice + deplacement;
     if (this.indice < 0) {

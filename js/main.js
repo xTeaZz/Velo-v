@@ -1,9 +1,11 @@
 picArray = ["images/velov1.jpg", "images/velov2.jpg", "images/velov3.jpg"];
-textArray = ["test1","test2", "test3"]
+textArray = ["test1","test2", "test3"];
 
 var slideShow = Object.create(Diaporama);
 slideShow.init(picArray, textArray);
-
+interval = setInterval(slideShow.transition(1), 5000);
+slideShow.initInterval(interval);
+/*slideShow.automatic();*/
 document.addEventListener("keydown", function(e) {
   if (e.keyCode == '37') {
     slideShow.transition(-1)
@@ -22,6 +24,12 @@ buttonright.addEventListener("click", function() {
   slideShow.transition(1)
 });
 
+/*
+var mapwindow = document.getElementById("map");
+window.addEventListener("scroll", function() {
+  mapwindow.scrollIntoView();
+});
+*/
 var map;
 function initMap() {
   map = new google.maps.Map(document.getElementById('map'), {
