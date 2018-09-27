@@ -3,9 +3,6 @@ textArray = ["test1","test2", "test3"];
 var map = Object.create(GoogleMap);
 var slideShow = Object.create(Diaporama);
 slideShow.init(picArray, textArray);
-interval = setInterval(slideShow.transition(1), 5000);
-slideShow.initInterval(interval);
-/*slideShow.automatic();*/
 document.addEventListener("keydown", function(e) {
   if (e.keyCode == '37') {
     slideShow.transition(-1)
@@ -22,6 +19,12 @@ buttonleft.addEventListener("click", function() {
 });
 buttonright.addEventListener("click", function() {
   slideShow.transition(1)
+});
+
+var reservation = document.getElementById("reservationButton");
+
+reservation.addEventListener("click", function() {
+  document.getElementById("signature").style.display = "block";
 });
 
 function initMap() {

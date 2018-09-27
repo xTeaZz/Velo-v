@@ -7,16 +7,14 @@ var Diaporama = {
     document.getElementById('caption').textContent = this.tabText[this.indice];
   },
 
-  initInterval: function(interval) {
-    this.interval = interval;
+  carousel: function() {
+   this.indice++;
+   document.getElementById('slidepic').src = this.tabPic[this.indice];
+   document.getElementById('caption').textContent = this.tabText[this.indice];
+   setTimeout(slideShow.carousel(), 5000);
   },
 
-  automatic: function() {
-    this.transition(+1);
-    clearInterval(this.interval);
-  },
-
-   transition: function(deplacement) {
+  transition: function(deplacement) {
     this.indice = this.indice + deplacement;
     if (this.indice < 0) {
       this.indice = 0;

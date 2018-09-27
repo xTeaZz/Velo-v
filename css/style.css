@@ -78,3 +78,12 @@
 .titleInfo {
   margin-bottom: 1em;
 }
+
+.infoColor {
+  color: #fd0003;
+}
+
+#signature {
+  display: none;
+  margin-top: 1em;
+}

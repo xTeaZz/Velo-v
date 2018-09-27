@@ -30,25 +30,29 @@
       <div id="info">
         <h2 class="text titleInfo">Informations de la Station</h2>
         <div class="text">
-          <p>Nom: </p>
-          <p>Etat: </p>
-          <p>Vélos disponibles: </p>
-          <p>Emplacements disponibles: </p>
-          <p>Vélos disponibles: </p>
+          <p>Nom: <span id="stationName" class="infoColor"></span> </p>
+          <p>Etat: <span id="stationStat" class="infoColor"></span></p>
+          <p>Vélos disponibles: <span id="stationBike" class="infoColor"></span></p>
+          <p>Emplacements disponibles: <span id="stationSlot" class="infoColor"></span></p>
         </div>
         <h2 class="text titleInfo">Réservation</h2>
         <form class="col" action="index.html" method="post">
           <input class ="titleInfo" type="text" name="nom" value="Nom">
           <input class ="titleInfo" type="text" name="prenom" value="Prénom">
-          <h4 class="text titleInfo">Signature</h4>
-          <canvas class ="titleInfo" id="canvas" width="250" height="180"></canvas>
           <br>
-          <input type="submit" name="envoie" value="Réserver">
+          <input id="reservationButton" type="button" name="envoie" value="Réserver">
+          <div id="signature">
+            <h4 class="text titleInfo">Signature</h4>
+            <canvas class ="titleInfo" id="canvas" width="250" height="180"></canvas>
+            <br>
+            <input type="button" name="valider" value="Valider">
+            <input type="button" name="annuler" value="Annuler">
+          </div>
         </form>
       </div>
     </div>
     <div id="reservation">
-      <p class="reservationText">Reservation</p>
+      <p class="reservationText">Il n'y a pas de Reservation</p>
     </div>
   </section>
   <footer>

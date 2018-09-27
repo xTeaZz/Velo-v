@@ -12,7 +12,17 @@ var GoogleMap = {
         var marker = new google.maps.Marker({
           position: station.position,
           title: station.name,
+          number: station.number,
           map: map
+        });
+        marker.addListener('click', function() {
+        ajaxGet("https://api.jcdecaux.com/vls/v1/stations/"+this.number+"?contract=Lyon&apiKey=65af477a79c3c0eca50cdd4a95bac21e8e17095b", function(reponse){
+          var station = JSON.parse(reponse);
+          document.getElementById("stationName").textContent = station.name;
+          document.getElementById("stationBike").textContent = station.available_bikes;
+          document.getElementById("stationStat").textContent = station.status;
+          document.getElementById("stationSlot").textContent = station.available_bike_stands;
+        })
         });
         markers.push(marker);
       });
