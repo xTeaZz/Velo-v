@@ -65,14 +65,15 @@
 #reservation {
   height: 10vh;
   display: flex;
+  flex-direction: column;
 }
 
 #canvas {
   background-color: white;
 }
 
-.reservationText {
- margin: auto;
+.reservationcenter {
+  margin: auto;
 }
 
 .titleInfo {
@@ -85,5 +86,9 @@
 
 #signature {
   display: none;
+  margin-top: 1em;
+}
+
+.margintop {
   margin-top: 1em;
 }
