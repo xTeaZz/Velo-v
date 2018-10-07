@@ -1,5 +1,5 @@
 var Diaporama = {
-  init: function(tableauImage, tableauTexte){
+  init(tableauImage, tableauTexte){
     this.tabPic = tableauImage;
     this.tabText = tableauTexte;
     this.indice = 0;
@@ -7,14 +7,14 @@ var Diaporama = {
     document.getElementById('caption').textContent = this.tabText[this.indice];
   },
 
-  carousel: function() {
+  carousel() {
    this.indice++;
    document.getElementById('slidepic').src = this.tabPic[this.indice];
    document.getElementById('caption').textContent = this.tabText[this.indice];
    setTimeout(slideShow.carousel(), 5000);
   },
 
-  transition: function(deplacement) {
+  transition(deplacement) {
     this.indice = this.indice + deplacement;
     if (this.indice < 0) {
       this.indice = 0;

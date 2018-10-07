@@ -47,26 +47,28 @@ var valider = document.getElementById("valider");
 valider.addEventListener("click", function() {
   var name = document.getElementById("stationName");
   var monTexte = name.innerText || name.textContent;
+  document.getElementById("signature").style.display = "none";
   document.getElementById("reservationText").textContent = "Vélo réservé à la station " + monTexte + " par";
   document.getElementById("decompte").textContent = "Temps restant"
+  var intervalId = setInterval(diminuerCompteur, 1000);
 });
 
 //Sauvegarde en sessionStorage du prenom
 var prenomSave = document.getElementById("prenom");
-if (sessionStorage.getItem("autosave")) {
-  prenomSave.value = sessionStorage.getItem("autosave");
+if (sessionStorage.getItem("prenom")) {
+  prenomSave.value = sessionStorage.getItem("prenom");
 }
 prenomSave.addEventListener("change", function() {
-  sessionStorage.setItem("autosave", prenomSave.value);
+  sessionStorage.setItem("prenom", prenomSave.value);
 });
 
 //Sauvegarde en sessionStorage du nom
 var nomSave = document.getElementById("nom");
-if (sessionStorage.getItem("autosave")) {
-  nomSave.value = sessionStorage.getItem("autosave");
+if (sessionStorage.getItem("nom")) {
+  nomSave.value = sessionStorage.getItem("nom");
 }
 nomSave.addEventListener("change", function() {
-  sessionStorage.setItem("autosave", nomSave.value);
+  sessionStorage.setItem("nom", nomSave.value);
 });
 
 var compteurElt = document.getElementById("compteur");
@@ -85,7 +87,7 @@ function diminuerCompteur() {
     }
 }
 // Appelle la fonction diminuerCompteur toutes les secondes (1000 millisecondes)
-var intervalId = setInterval(diminuerCompteur, 1000);
+
 
 //initialisation de la googleMap
 function initMap() {
