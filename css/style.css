@@ -92,3 +92,7 @@
 .margintop {
   margin-top: 1em;
 }
+
+#compteur {
+  visibility: hidden;
+}
