@@ -1,5 +1,6 @@
 var Diaporama = {
-  init(tableauImage, tableauTexte){
+
+  init(tableauImage, tableauTexte) {
     this.tabPic = tableauImage;
     this.tabText = tableauTexte;
     this.indice = 0;
@@ -7,15 +8,15 @@ var Diaporama = {
     document.getElementById('caption').textContent = this.tabText[this.indice];
   },
 
-carousel() {
-  setInterval(() => {
-    if (this.indice >= (this.tabPic.length - 1)) {
-      this.transition(-this.indice);
-    } else {
-      this.transition(1);
-    }
-  }, 5000);
-},
+  carousel() {
+    setInterval(() => {
+      if (this.indice >= (this.tabPic.length - 1)) {
+        this.transition(-this.indice);
+      } else {
+        this.transition(1);
+      }
+    }, 5000);
+  },
 
   transition(deplacement) {
     this.indice = this.indice + deplacement;

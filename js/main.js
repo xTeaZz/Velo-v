@@ -5,8 +5,9 @@ textArray = ["test1","test2", "test3"];
 //initialisation des objets
 var map = Object.create(GoogleMap);
 var slideShow = Object.create(Diaporama);
+var timer = Object.create(Timer);
 
-//initialisation du diaporama avec les textes et images en parametre
+//initialisation du diaporama avec les textes et images en parametres + automatic
 slideShow.init(picArray, textArray);
 slideShow.carousel();
 
@@ -51,10 +52,10 @@ valider.addEventListener("click", function() {
   var name = document.getElementById("stationName");
   var monTexte = name.innerText || name.textContent;
   document.getElementById("signature").style.display = "none";
-  document.getElementById("reservationText").textContent = "Vélo réservé à la station " + monTexte + " par";
+  document.getElementById("reservationText").textContent = "Vélo réservé à la station " + monTexte + "par";
   document.getElementById("decompte").textContent = "Temps restant"
   document.getElementById("compteur").style.visibility = "visible";
-  var intervalId = setInterval(diminuerCompteur, 1000);
+  timer.startTimer();
 });
 
 //Sauvegarde en sessionStorage du prenom
@@ -79,26 +80,9 @@ var compteurElt = document.getElementById("compteur");
 if (sessionStorage.getItem("compteur")) {
   nomSave.value = sessionStorage.getItem("compteur");
   document.getElementById("compteur").style.visibility = "visible";
-  var intervalId = setInterval(diminuerCompteur, compteur);
 }
-// Diminue le compteur jusqu'à 0
-function diminuerCompteur() {
-    // Conversion en nombre du texte du compteur
-    var compteur = Number(compteurElt.textContent);
-    if (compteur > 1) {
-        compteurElt.textContent = compteur - 1;
-    } else {
-        // Annule l'exécution répétée
-        clearInterval(intervalId);
-        // Modifie le titre de la page
-        var titre = document.getElementById("compteur");
-        titre.textContent = "La réservation à expirer";
-    }
-}
-// Appelle la fonction diminuerCompteur toutes les secondes (1000 millisecondes)
-
 
 //initialisation de la googleMap
 function initMap() {
   GoogleMap.initBikeMap();
-}
+};
