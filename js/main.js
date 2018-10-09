@@ -46,18 +46,6 @@ annuler.addEventListener("click", function() {
   document.getElementById("signature").style.display = "none";
 });
 
-//Action lorsqu'on appuie sur valider
-var valider = document.getElementById("valider");
-valider.addEventListener("click", function() {
-  var name = document.getElementById("stationName");
-  var monTexte = name.innerText || name.textContent;
-  document.getElementById("signature").style.display = "none";
-  document.getElementById("reservationText").textContent = "Vélo réservé à la station " + monTexte + "par";
-  document.getElementById("decompte").textContent = "Temps restant"
-  document.getElementById("compteur").style.visibility = "visible";
-  timer.startTimer();
-});
-
 //Sauvegarde en sessionStorage du prenom
 var prenomSave = document.getElementById("prenom");
 if (localStorage.getItem("prenom")) {
@@ -74,6 +62,21 @@ if (localStorage.getItem("nom")) {
 }
 nomSave.addEventListener("change", function() {
   localStorage.setItem("nom", nomSave.value);
+});
+
+//Action lorsqu'on appuie sur valider
+var valider = document.getElementById("valider");
+valider.addEventListener("click", function() {
+  var name = document.getElementById("stationName");
+  var monTexte = name.innerText || name.textContent;
+  var myName = localStorage.getItem("nom");
+  var myFirstName = localStorage.getItem("prenom");
+  document.getElementById("signature").style.display = "none";
+  document.getElementById("reservationText").textContent = "Vélo réservé à la station " + monTexte + " par " + myName + " " + myFirstName;
+  document.getElementById("decompte").textContent = "Temps restant"
+  document.getElementById("compteur").style.visibility = "visible";
+  timer.stopTimer();
+  timer.startTimer();
 });
 
 var compteurElt = document.getElementById("compteur");
