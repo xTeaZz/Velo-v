@@ -1,6 +1,6 @@
 //Tableau des textes et images
-picArray = ["images/velov1.jpg", "images/velov2.jpg", "images/velov3.jpg"];
-textArray = ["test1","test2", "test3"];
+var picArray = ["images/velov1.jpg", "images/velov2.jpg", "images/velov3.jpg"];
+var textArray = ["test1","test2", "test3"];
 
 //initialisation des objets
 var map = Object.create(GoogleMap);
@@ -32,8 +32,6 @@ buttonright.addEventListener("click", function() {
   slideShow.transition(1)
 });
 
-
-
 //Affiche le panneau de signature et de validation avec le bouton reservation
 var reservation = document.getElementById("reservationButton");
 reservation.addEventListener("click", function() {
@@ -64,13 +62,14 @@ nomSave.addEventListener("change", function() {
   localStorage.setItem("nom", nomSave.value);
 });
 
+var name = document.getElementById("stationName");
+var myName = localStorage.getItem("nom");
+var myFirstName = localStorage.getItem("prenom");
+var monTexte = name.innerText || name.textContent;
+
 //Action lorsqu'on appuie sur valider
 var valider = document.getElementById("valider");
 valider.addEventListener("click", function() {
-  var name = document.getElementById("stationName");
-  var monTexte = name.innerText || name.textContent;
-  var myName = localStorage.getItem("nom");
-  var myFirstName = localStorage.getItem("prenom");
   document.getElementById("signature").style.display = "none";
   document.getElementById("reservationText").textContent = "Vélo réservé à la station " + monTexte + " par " + myName + " " + myFirstName;
   document.getElementById("decompte").textContent = "Temps restant"
@@ -79,9 +78,10 @@ valider.addEventListener("click", function() {
   timer.startTimer();
 });
 
-var compteurElt = document.getElementById("compteur");
-if (sessionStorage.getItem("compteur")) {
-  nomSave.value = sessionStorage.getItem("compteur");
+if (sessionStorage.getItem("time")) {
+  document.getElementById("compteur").textContent = sessionStorage.getItem("time");
+  document.getElementById("reservationText").textContent = "Vélo réservé à la station " + monTexte + " par " + myName + " " + myFirstName;
+  document.getElementById("decompte").textContent = "Temps restant"
   document.getElementById("compteur").style.visibility = "visible";
 }
 

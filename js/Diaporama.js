@@ -29,4 +29,5 @@ var Diaporama = {
     document.getElementById('slidepic').src = this.tabPic[this.indice];
     document.getElementById('caption').textContent = this.tabText[this.indice];
   }
+  
 };

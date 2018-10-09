@@ -17,7 +17,8 @@ var Timer = {
           this.stopTimer();
         } else {
           second--;
-          document.getElementById("compteur").textContent = minute + " : " + second;
+          titre.textContent = minute + " : " + second;
+          sessionStorage.setItem("time", titre.textContent);
         }
       }, 1000);
     },

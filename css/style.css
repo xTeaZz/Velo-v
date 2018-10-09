@@ -94,5 +94,6 @@
 }
 
 #compteur {
+  color: #fd0003;
   visibility: hidden;
 }
