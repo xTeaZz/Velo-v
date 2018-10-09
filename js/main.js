@@ -8,6 +8,7 @@ var slideShow = Object.create(Diaporama);
 
 //initialisation du diaporama avec les textes et images en parametre
 slideShow.init(picArray, textArray);
+slideShow.carousel();
 
 //Ecoute l'utilisation des fleches directionnel du clavier pour changer le diaporama
 document.addEventListener("keydown", function(e) {
@@ -29,6 +30,8 @@ var buttonright = document.getElementById("buttonright");
 buttonright.addEventListener("click", function() {
   slideShow.transition(1)
 });
+
+
 
 //Affiche le panneau de signature et de validation avec le bouton reservation
 var reservation = document.getElementById("reservationButton");
