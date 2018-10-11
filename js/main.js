@@ -62,28 +62,43 @@ nomSave.addEventListener("change", function() {
   localStorage.setItem("nom", nomSave.value);
 });
 
-var name = document.getElementById("stationName");
 var myName = localStorage.getItem("nom");
 var myFirstName = localStorage.getItem("prenom");
-var monTexte = name.innerText || name.textContent;
 
 //Action lorsqu'on appuie sur valider
 var valider = document.getElementById("valider");
 valider.addEventListener("click", function() {
+  var name = document.getElementById("stationName");
+  var monTexte = name.textContent;
   document.getElementById("signature").style.display = "none";
   document.getElementById("reservationText").textContent = "Vélo réservé à la station " + monTexte + " par " + myName + " " + myFirstName;
   document.getElementById("decompte").textContent = "Temps restant"
   document.getElementById("compteur").style.visibility = "visible";
+  sessionStorage.setItem("stationName", monTexte);
   timer.stopTimer();
-  timer.startTimer();
+  timer.startTimer(0, 20);
 });
 
-if (sessionStorage.getItem("time")) {
-  document.getElementById("compteur").textContent = sessionStorage.getItem("time");
+if (sessionStorage.getItem("second")) {
+  var monTexte = sessionStorage.getItem("stationName");
+  document.getElementById("compteur").textContent = sessionStorage.getItem("minute")+ " : " +sessionStorage.getItem("second");
   document.getElementById("reservationText").textContent = "Vélo réservé à la station " + monTexte + " par " + myName + " " + myFirstName;
   document.getElementById("decompte").textContent = "Temps restant"
   document.getElementById("compteur").style.visibility = "visible";
+  timer.startTimer(sessionStorage.getItem("second"), sessionStorage.getItem("minute"));
 }
+
+ var canvas = document.getElementById('canvas');
+ var context = canvas.getContext('2d');
+ var radius = 10;
+
+  function putPoint(e) {
+  context.beginPath();
+  context.arc(e.offsetX, e.offsetY, radius, 0, Math.PI*2);
+  context.fill();
+ }
+
+ canvas.addEventListener('mousedown', putPoint);
 
 //initialisation de la googleMap
 function initMap() {

@@ -4,12 +4,10 @@ var Timer = {
       clearInterval(this.decompte);
     },
   
-    startTimer() {
-      var second = Math.floor(0);
-      var minute = Math.floor(20);
+    startTimer(second, minute) {
       var titre = document.getElementById("compteur");
       this.decompte = setInterval( () => {
-        if (second === 0 && minute !== 0) {
+        if (second <= 0 && minute !== 0) {
           minute--;
           second = 59;
         } else if (second <= 0 && minute <= 0) {
@@ -18,7 +16,8 @@ var Timer = {
         } else {
           second--;
           titre.textContent = minute + " : " + second;
-          sessionStorage.setItem("time", titre.textContent);
+          sessionStorage.setItem("minute", minute);
+          sessionStorage.setItem("second", second);
         }
       }, 1000);
     },
