@@ -42,6 +42,7 @@ reservation.addEventListener("click", function() {
 var annuler = document.getElementById("annuler");
 annuler.addEventListener("click", function() {
   document.getElementById("signature").style.display = "none";
+  context.clearRect(0, 0, canvas.width, canvas.height);
 });
 
 //Sauvegarde en sessionStorage du prenom
@@ -90,15 +91,35 @@ if (sessionStorage.getItem("second")) {
 
  var canvas = document.getElementById('canvas');
  var context = canvas.getContext('2d');
- var radius = 10;
+ var radius = 7;
+ var dragging = false;
+ context.lineWidth = radius*2;
 
   function putPoint(e) {
-  context.beginPath();
-  context.arc(e.offsetX, e.offsetY, radius, 0, Math.PI*2);
-  context.fill();
+    if(dragging){
+      context.lineTo(e.offsetX, e.offsetY);
+      context.stroke();
+      context.beginPath();
+      context.arc(e.offsetX, e.offsetY, radius, 0, Math.PI*2);
+      context.fill();
+      context.beginPath();
+      context.moveTo(e.offsetX, e.offsetY);
+    }
  }
 
- canvas.addEventListener('mousedown', putPoint);
+ function engage(e) {
+   dragging = true;
+   putPoint(e);
+ }
+
+ function disengage() {
+  dragging = false;
+  context.beginPath();
+}
+
+ canvas.addEventListener('mousedown', engage);
+ canvas.addEventListener('mousemove', putPoint);
+ canvas.addEventListener('mouseup', disengage);
 
 //initialisation de la googleMap
 function initMap() {
