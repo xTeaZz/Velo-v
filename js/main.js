@@ -77,7 +77,7 @@ valider.addEventListener("click", function() {
   document.getElementById("compteur").style.visibility = "visible";
   sessionStorage.setItem("stationName", monTexte);
   timer.stopTimer();
-  timer.startTimer(0, 20);
+  timer.startTimer(10, 0);
 });
 
 if (sessionStorage.getItem("second")) {
@@ -91,7 +91,7 @@ if (sessionStorage.getItem("second")) {
 
  var canvas = document.getElementById('canvas');
  var context = canvas.getContext('2d');
- var radius = 7;
+ var radius = 5;
  var dragging = false;
  context.lineWidth = radius*2;
 
