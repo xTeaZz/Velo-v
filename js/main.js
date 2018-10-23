@@ -1,6 +1,6 @@
 //Tableau des textes et images
-var picArray = ["images/velov1.jpg", "images/velov2.jpg", "images/velov3.jpg"];
-var textArray = ["test1","test2", "test3"];
+var picArray = ["images/tuto1.png", "images/tuto2.png", "images/tuto3.png"];
+var textArray = ["Sélectionnez une station à l'aide de la carte ci-dessous","A droite s'affichent les informations de la stations ainsi que le formulaire de réservation", "Signez pour valider votre réservation, elle expirera dans 20 minutes"];
 
 //initialisation des objets
 var map = Object.create(GoogleMap);
@@ -77,7 +77,8 @@ valider.addEventListener("click", function() {
   document.getElementById("compteur").style.visibility = "visible";
   sessionStorage.setItem("stationName", monTexte);
   timer.stopTimer();
-  timer.startTimer(10, 0);
+  timer.startTimer(0, 20);
+  console.log(document.getElementById("canvas"));
 });
 
 if (sessionStorage.getItem("second")) {
@@ -120,6 +121,7 @@ if (sessionStorage.getItem("second")) {
  canvas.addEventListener('mousedown', engage);
  canvas.addEventListener('mousemove', putPoint);
  canvas.addEventListener('mouseup', disengage);
+ canvas.addEventListener('mouseout', disengage);
 
 //initialisation de la googleMap
 function initMap() {
