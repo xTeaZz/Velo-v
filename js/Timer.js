@@ -14,7 +14,7 @@ var Timer = {
           sessionStorage.clear();
           this.stopTimer();
           document.getElementById("reservationText").textContent = "";
-          titre.textContent = "Location vélo expirée";
+          titre.textContent = "Réservation vélo expirée";
         } else {
           second--;
           titre.textContent = minute + " : " + second;

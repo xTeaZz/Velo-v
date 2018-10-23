@@ -32,12 +32,6 @@ buttonright.addEventListener("click", function() {
   slideShow.transition(1)
 });
 
-//Affiche le panneau de signature et de validation avec le bouton reservation
-var reservation = document.getElementById("reservationButton");
-reservation.addEventListener("click", function() {
-  document.getElementById("signature").style.display = "block";
-});
-
 //Annule la reservation
 var annuler = document.getElementById("annuler");
 annuler.addEventListener("click", function() {
@@ -66,6 +60,27 @@ nomSave.addEventListener("change", function() {
 var myName = localStorage.getItem("nom");
 var myFirstName = localStorage.getItem("prenom");
 
+//Affiche le panneau de signature et de validation avec le bouton reservation
+var reservation = document.getElementById("reservationButton");
+reservation.addEventListener("click", function() {
+  if ((nomSave.value = "") || (prenomSave.value = "")) {
+    alert("Veuillez remplir tout les champs");
+  } else {
+    document.getElementById("signature").style.display = "block";
+  }
+});
+
+  //Annule la reservation
+  var annulerreservation = document.getElementById("annulerReservation");
+  annulerreservation.addEventListener("click", function() {
+  sessionStorage.clear();
+  timer.stopTimer();
+  document.getElementById("reservationText").textContent = "";
+  document.getElementById("decompte").textContent = "";
+  document.getElementById("compteur").textContent = "Réservation annuler";
+  document.getElementById("annulerReservation").style.visibility = "hidden";
+  });
+
 //Action lorsqu'on appuie sur valider
 var valider = document.getElementById("valider");
 valider.addEventListener("click", function() {
@@ -75,6 +90,7 @@ valider.addEventListener("click", function() {
   document.getElementById("reservationText").textContent = "Vélo réservé à la station " + monTexte + " par " + myName + " " + myFirstName;
   document.getElementById("decompte").textContent = "Temps restant"
   document.getElementById("compteur").style.visibility = "visible";
+  document.getElementById("annulerReservation").style.visibility = "visible";
   sessionStorage.setItem("stationName", monTexte);
   timer.stopTimer();
   timer.startTimer(0, 20);
