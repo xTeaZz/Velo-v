@@ -65,7 +65,11 @@ var reservation = document.getElementById("reservationButton");
 reservation.addEventListener("click", function() {
   if ((nomSave.value = "") || (prenomSave.value = "")) {
     alert("Veuillez remplir tout les champs");
-  } else {
+  }/*
+  if (document.getElementById("stationBike").textContent = "0") {
+  console.log(document.getElementById("stationBike").textContent);
+  alert("Il n'y a plus de vélo disponibles dans cette station"); 
+}*/ else {
     document.getElementById("signature").style.display = "block";
   }
 });
@@ -79,30 +83,36 @@ reservation.addEventListener("click", function() {
   document.getElementById("decompte").textContent = "";
   document.getElementById("compteur").textContent = "Réservation annuler";
   document.getElementById("annulerReservation").style.visibility = "hidden";
+  document.getElementById("info").style.visibility = "hidden";
+  document.getElementById("map").style.width = "100%" ;
   });
 
 //Action lorsqu'on appuie sur valider
 var valider = document.getElementById("valider");
 valider.addEventListener("click", function() {
-  var name = document.getElementById("stationName");
-  var monTexte = name.textContent;
+  var name = document.getElementById("stationName").textContent;
   document.getElementById("signature").style.display = "none";
-  document.getElementById("reservationText").textContent = "Vélo réservé à la station " + monTexte + " par " + myName + " " + myFirstName;
+  document.getElementById("reservationText").textContent = "Vélo réservé à la station " + name + " par " + myName + " " + myFirstName;
   document.getElementById("decompte").textContent = "Temps restant"
   document.getElementById("compteur").style.visibility = "visible";
   document.getElementById("annulerReservation").style.visibility = "visible";
-  sessionStorage.setItem("stationName", monTexte);
+  document.getElementById("info").style.visibility = "hidden";
+  document.getElementById("map").style.width = "100%" ;
+  sessionStorage.setItem("stationName", name);
   timer.stopTimer();
   timer.startTimer(0, 20);
   console.log(document.getElementById("canvas"));
 });
 
+//Verifications d'une reservation lors d'un rafraichissement
 if (sessionStorage.getItem("second")) {
   var monTexte = sessionStorage.getItem("stationName");
   document.getElementById("compteur").textContent = sessionStorage.getItem("minute")+ " : " +sessionStorage.getItem("second");
   document.getElementById("reservationText").textContent = "Vélo réservé à la station " + monTexte + " par " + myName + " " + myFirstName;
   document.getElementById("decompte").textContent = "Temps restant"
   document.getElementById("compteur").style.visibility = "visible";
+  document.getElementById("info").style.visibility = "hidden";
+  document.getElementById("map").style.width = "100%" ;
   timer.startTimer(sessionStorage.getItem("second"), sessionStorage.getItem("minute"));
 }
 

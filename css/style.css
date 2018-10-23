@@ -50,12 +50,13 @@
 
 #map {
   height: 90vh;
-  width: 75%;
+  width: 100%;
 }
 
 #info {
   width: 25%;
   background-color: #343a40!important;
+  visibility: hidden;
 }
 
 .text {

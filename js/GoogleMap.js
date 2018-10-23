@@ -19,6 +19,8 @@ var GoogleMap = {
         });
         //Remplie les informations lorsqu'on clique sur un marqueur
         marker.addListener('click', function() {
+          document.getElementById("info").style.visibility = "visible";
+          document.getElementById("map").style.width = "75%" ;
         ajaxGet("https://api.jcdecaux.com/vls/v1/stations/"+this.number+"?contract=Lyon&apiKey=65af477a79c3c0eca50cdd4a95bac21e8e17095b", function(reponse){
           var station = JSON.parse(reponse);
           document.getElementById("stationName").textContent = station.name;
