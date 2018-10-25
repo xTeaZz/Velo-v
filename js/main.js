@@ -6,6 +6,7 @@ var textArray = ["Sélectionnez une station à l'aide de la carte ci-dessous","A
 var map = Object.create(GoogleMap);
 var slideShow = Object.create(Diaporama);
 var timer = Object.create(Timer);
+var canvas = Object.create(Canvas);
 
 //initialisation du diaporama avec les textes et images en parametres + automatic
 slideShow.init(picArray, textArray);
@@ -63,13 +64,12 @@ var myFirstName = localStorage.getItem("prenom");
 //Affiche le panneau de signature et de validation avec le bouton reservation
 var reservation = document.getElementById("reservationButton");
 reservation.addEventListener("click", function() {
-  if ((nomSave.value = "") || (prenomSave.value = "")) {
+  if ((nomSave.value == "") || (prenomSave.value == "")) {
     alert("Veuillez remplir tout les champs");
-  }/*
-  if (document.getElementById("stationBike").textContent = "0") {
-  console.log(document.getElementById("stationBike").textContent);
+  }
+  if (document.getElementById("stationBike").textContent == "0") {
   alert("Il n'y a plus de vélo disponibles dans cette station"); 
-}*/ else {
+  } else {
     document.getElementById("signature").style.display = "block";
   }
 });
@@ -100,8 +100,7 @@ valider.addEventListener("click", function() {
   document.getElementById("map").style.width = "100%" ;
   sessionStorage.setItem("stationName", name);
   timer.stopTimer();
-  timer.startTimer(0, 20);
-  console.log(document.getElementById("canvas"));
+  timer.startTimer(0, 200);
 });
 
 //Verifications d'une reservation lors d'un rafraichissement
@@ -148,6 +147,11 @@ if (sessionStorage.getItem("second")) {
  canvas.addEventListener('mousemove', putPoint);
  canvas.addEventListener('mouseup', disengage);
  canvas.addEventListener('mouseout', disengage);
+
+ canvas.addEventListener('touchstart', engage);
+ canvas.addEventListener('mousemove', putPoint);
+ canvas.addEventListener('touchend', disengage);
+ canvas.addEventListener('touchleave', disengage);
 
 //initialisation de la googleMap
 function initMap() {
