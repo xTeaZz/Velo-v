@@ -56,11 +56,15 @@
 #info {
   width: 25%;
   background-color: #343a40!important;
-  visibility: hidden;
+  display: none;
 }
 
 .text {
   color: white;
+}
+
+#formulaire {
+  height: px;
 }
 
 #reservation {

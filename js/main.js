@@ -6,7 +6,7 @@ var textArray = ["Sélectionnez une station à l'aide de la carte ci-dessous","A
 var map = Object.create(GoogleMap);
 var slideShow = Object.create(Diaporama);
 var timer = Object.create(Timer);
-var canvas = Object.create(Canvas);
+/*var canvas = Object.create(Canvas);*/
 
 //initialisation du diaporama avec les textes et images en parametres + automatic
 slideShow.init(picArray, textArray);
@@ -83,7 +83,6 @@ reservation.addEventListener("click", function() {
   document.getElementById("decompte").textContent = "";
   document.getElementById("compteur").textContent = "Réservation annuler";
   document.getElementById("annulerReservation").style.visibility = "hidden";
-  document.getElementById("info").style.visibility = "hidden";
   document.getElementById("map").style.width = "100%" ;
   });
 
@@ -96,7 +95,7 @@ valider.addEventListener("click", function() {
   document.getElementById("decompte").textContent = "Temps restant"
   document.getElementById("compteur").style.visibility = "visible";
   document.getElementById("annulerReservation").style.visibility = "visible";
-  document.getElementById("info").style.visibility = "hidden";
+  document.getElementById("info").style.display = "none";
   document.getElementById("map").style.width = "100%" ;
   sessionStorage.setItem("stationName", name);
   timer.stopTimer();
@@ -110,7 +109,7 @@ if (sessionStorage.getItem("second")) {
   document.getElementById("reservationText").textContent = "Vélo réservé à la station " + monTexte + " par " + myName + " " + myFirstName;
   document.getElementById("decompte").textContent = "Temps restant"
   document.getElementById("compteur").style.visibility = "visible";
-  document.getElementById("info").style.visibility = "hidden";
+  document.getElementById("info").style.display = "none";
   document.getElementById("map").style.width = "100%" ;
   timer.startTimer(sessionStorage.getItem("second"), sessionStorage.getItem("minute"));
 }
