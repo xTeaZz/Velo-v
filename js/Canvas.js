@@ -1,39 +1,30 @@
 var Canvas = {
-
-    area : document.getElementById('canvas'),
-    context : canvas.getContext('2d'),
-    var canvas = document.getElementById('canvas');
- var context = canvas.getContext('2d');
- var radius = 5;
- var dragging = false;
- context.lineWidth = radius*2;
-
-  function putPoint(e) {
-    if(dragging){
-      context.lineTo(e.offsetX, e.offsetY);
-      context.stroke();
-      context.beginPath();
-      context.arc(e.offsetX, e.offsetY, radius, 0, Math.PI*2);
-      context.fill();
-      context.beginPath();
-      context.moveTo(e.offsetX, e.offsetY);
+  canvas : document.getElementById('canvas'),
+  context : canvas.getContext('2d'),
+  radius : 5,
+  dragging : false,
+ 
+  putPoint(e) {
+    if(this.dragging){
+      this.context.lineWidth = radius*2
+      this.context.lineTo(e.offsetX, e.offsetY);
+      this.context.stroke();
+      this.context.beginPath();
+      this.context.arc(e.offsetX, e.offsetY, radius, 0, Math.PI*2);
+      this.context.fill();
+      this.context.beginPath();
+      this.context.moveTo(e.offsetX, e.offsetY);
     }
- }
-
- function engage(e) {
-   dragging = true;
-   putPoint(e);
- }
-
- function disengage() {
-  dragging = false;
-  context.beginPath();
+  },
+ 
+  engage(e) {
+    this.dragging = true;
+    this.putPoint(e);
+  },
+ 
+  disengage() {
+    this.dragging = false;
+    this.context.beginPath();
+  }
+ 
 }
-
- canvas.addEventListener('mousedown', engage);
- canvas.addEventListener('mousemove', putPoint);
- canvas.addEventListener('mouseup', disengage);
-
-
-};
-

@@ -6,7 +6,7 @@ var textArray = ["Sélectionnez une station à l'aide de la carte ci-dessous","A
 var map = Object.create(GoogleMap);
 var slideShow = Object.create(Diaporama);
 var timer = Object.create(Timer);
-/*var canvas = Object.create(Canvas);*/
+var canvas = Object.create(Canvas);
 
 //initialisation du diaporama avec les textes et images en parametres + automatic
 slideShow.init(picArray, textArray);
@@ -114,43 +114,16 @@ if (sessionStorage.getItem("second")) {
   timer.startTimer(sessionStorage.getItem("second"), sessionStorage.getItem("minute"));
 }
 
- var canvas = document.getElementById('canvas');
- var context = canvas.getContext('2d');
- var radius = 5;
- var dragging = false;
- context.lineWidth = radius*2;
+//Ecoute des evenement du canvas
+addEventListener('mousedown', canvas.engage);
+addEventListener('mousemove', canvas.putPoint);
+addEventListener('mouseup', canvas.disengage);
+addEventListener('mouseout', canvas.disengage);
 
-  function putPoint(e) {
-    if(dragging){
-      context.lineTo(e.offsetX, e.offsetY);
-      context.stroke();
-      context.beginPath();
-      context.arc(e.offsetX, e.offsetY, radius, 0, Math.PI*2);
-      context.fill();
-      context.beginPath();
-      context.moveTo(e.offsetX, e.offsetY);
-    }
- }
-
- function engage(e) {
-   dragging = true;
-   putPoint(e);
- }
-
- function disengage() {
-  dragging = false;
-  context.beginPath();
-}
-
- canvas.addEventListener('mousedown', engage);
- canvas.addEventListener('mousemove', putPoint);
- canvas.addEventListener('mouseup', disengage);
- canvas.addEventListener('mouseout', disengage);
-
- canvas.addEventListener('touchstart', engage);
- canvas.addEventListener('mousemove', putPoint);
- canvas.addEventListener('touchend', disengage);
- canvas.addEventListener('touchleave', disengage);
+addEventListener('touchstart', canvas.engage);
+addEventListener('mousemove', canvas.putPoint);
+addEventListener('touchend', canvas.disengage);
+addEventListener('touchleave', canvas.disengage);
 
 //initialisation de la googleMap
 function initMap() {
