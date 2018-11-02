@@ -1,30 +1,36 @@
 var Canvas = {
-  canvas : document.getElementById('canvas'),
-  context : canvas.getContext('2d'),
-  radius : 5,
-  dragging : false,
+
+  init : function() {
+    this.canvas = document.getElementById('canvas');
+    this.context = this.canvas.getContext('2d');
+    this.radius = 5;
+    this.dragging = false;
+    this.context.lineWidth = this.radius*2;
+  },
  
-  putPoint(e) {
+  putPoint : function(e) {
     if(this.dragging){
-      this.context.lineWidth = radius*2
       this.context.lineTo(e.offsetX, e.offsetY);
       this.context.stroke();
       this.context.beginPath();
-      this.context.arc(e.offsetX, e.offsetY, radius, 0, Math.PI*2);
+      this.context.arc(e.offsetX, e.offsetY, this.radius, 0, Math.PI*2);
       this.context.fill();
       this.context.beginPath();
       this.context.moveTo(e.offsetX, e.offsetY);
     }
   },
  
-  engage(e) {
+  engage : function() {
     this.dragging = true;
-    this.putPoint(e);
   },
  
-  disengage() {
+  disengage : function() {
     this.dragging = false;
     this.context.beginPath();
+  },
+
+  clearContext : function() {
+    this.context.clearRect(0, 0, canvas.width, canvas.height);
   }
  
 }

@@ -7,6 +7,7 @@ var map = Object.create(GoogleMap);
 var slideShow = Object.create(Diaporama);
 var timer = Object.create(Timer);
 var canvas = Object.create(Canvas);
+var reservationClass = Object.create(Reservation);
 
 //initialisation du diaporama avec les textes et images en parametres + automatic
 slideShow.init(picArray, textArray);
@@ -37,7 +38,7 @@ buttonright.addEventListener("click", function() {
 var annuler = document.getElementById("annuler");
 annuler.addEventListener("click", function() {
   document.getElementById("signature").style.display = "none";
-  context.clearRect(0, 0, canvas.width, canvas.height);
+  canvas.clearContext();
 });
 
 //Sauvegarde en sessionStorage du prenom
@@ -60,6 +61,7 @@ nomSave.addEventListener("change", function() {
 
 var myName = localStorage.getItem("nom");
 var myFirstName = localStorage.getItem("prenom");
+var canvasTest = 0;
 
 //Affiche le panneau de signature et de validation avec le bouton reservation
 var reservation = document.getElementById("reservationButton");
@@ -68,9 +70,40 @@ reservation.addEventListener("click", function() {
     alert("Veuillez remplir tout les champs");
   }
   if (document.getElementById("stationBike").textContent == "0") {
-  alert("Il n'y a plus de vélo disponibles dans cette station"); 
+    alert("Il n'y a plus de vélo disponibles dans cette station"); 
   } else {
     document.getElementById("signature").style.display = "block";
+    canvas.init();
+    var canvasArea = document.getElementById("canvas");
+    canvasArea.addEventListener('mousedown', function(e) {
+      canvasTest = 1;
+      canvas.engage();
+      canvas.putPoint(e);
+    });
+    canvasArea.addEventListener('mousemove', function(e) {
+      canvas.putPoint(e);
+    });
+    canvasArea.addEventListener('mouseup', function() {
+      canvas.disengage();
+    });
+    canvasArea.addEventListener('mouseout', function() {
+      canvas.disengage()
+    });
+
+    canvasArea.addEventListener('touchstart', function() {
+      canvasTest = 1;
+      canvas.engage()
+      canvas.putPoint(e);
+    });
+    canvasArea.addEventListener('touchmove', function() {
+      canvas.putPoint(e)
+    });
+    canvasArea.addEventListener('touchend', function() {
+      canvas.disengage()
+    });
+    canvasArea.addEventListener('touchleave', function() {
+      canvas.disengage()
+    });
   }
 });
 
@@ -79,52 +112,41 @@ reservation.addEventListener("click", function() {
   annulerreservation.addEventListener("click", function() {
   sessionStorage.clear();
   timer.stopTimer();
-  document.getElementById("reservationText").textContent = "";
-  document.getElementById("decompte").textContent = "";
-  document.getElementById("compteur").textContent = "Réservation annuler";
-  document.getElementById("annulerReservation").style.visibility = "hidden";
-  document.getElementById("map").style.width = "100%" ;
+  reservationClass.cancel();
   });
 
 //Action lorsqu'on appuie sur valider
 var valider = document.getElementById("valider");
 valider.addEventListener("click", function() {
-  var name = document.getElementById("stationName").textContent;
-  document.getElementById("signature").style.display = "none";
-  document.getElementById("reservationText").textContent = "Vélo réservé à la station " + name + " par " + myName + " " + myFirstName;
-  document.getElementById("decompte").textContent = "Temps restant"
-  document.getElementById("compteur").style.visibility = "visible";
-  document.getElementById("annulerReservation").style.visibility = "visible";
-  document.getElementById("info").style.display = "none";
-  document.getElementById("map").style.width = "100%" ;
-  sessionStorage.setItem("stationName", name);
-  timer.stopTimer();
-  timer.startTimer(0, 200);
+  if(canvasTest == 0) {
+    alert("Veuillez signez votre réservation");
+  } else {
+    reservationClass.validate();
+    timer.stopTimer();
+    timer.startTimer(0, 20);
+  }
 });
 
 //Verifications d'une reservation lors d'un rafraichissement
 if (sessionStorage.getItem("second")) {
   var monTexte = sessionStorage.getItem("stationName");
-  document.getElementById("compteur").textContent = sessionStorage.getItem("minute")+ " : " +sessionStorage.getItem("second");
-  document.getElementById("reservationText").textContent = "Vélo réservé à la station " + monTexte + " par " + myName + " " + myFirstName;
-  document.getElementById("decompte").textContent = "Temps restant"
-  document.getElementById("compteur").style.visibility = "visible";
-  document.getElementById("info").style.display = "none";
-  document.getElementById("map").style.width = "100%" ;
+  reservationClass.verification();
   timer.startTimer(sessionStorage.getItem("second"), sessionStorage.getItem("minute"));
 }
-
+/*
 //Ecoute des evenement du canvas
-addEventListener('mousedown', canvas.engage);
-addEventListener('mousemove', canvas.putPoint);
-addEventListener('mouseup', canvas.disengage);
-addEventListener('mouseout', canvas.disengage);
+canvas.init();
+var canvasArea = document.getElementById("canvas");
+canvasArea.addEventListener('mousedown', canvas.engage());
+canvasArea.addEventListener('mousemove', canvas.putPoint());
+canvasArea.addEventListener('mouseup', canvas.disengage());
+canvasArea.addEventListener('mouseout', canvas.disengage());
 
-addEventListener('touchstart', canvas.engage);
-addEventListener('mousemove', canvas.putPoint);
-addEventListener('touchend', canvas.disengage);
-addEventListener('touchleave', canvas.disengage);
-
+canvasArea.addEventListener('touchstart', canvas.engage());
+canvasArea.addEventListener('mousemove', canvas.putPoint());
+canvasArea.addEventListener('touchend', canvas.disengage());
+canvasArea.addEventListener('touchleave', canvas.disengage());
+*/
 //initialisation de la googleMap
 function initMap() {
   GoogleMap.initBikeMap();
