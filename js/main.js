@@ -41,7 +41,7 @@ annuler.addEventListener("click", function() {
   canvas.clearContext();
 });
 
-//Sauvegarde en sessionStorage du prenom
+//Sauvegarde en localStorage du prenom
 var prenomSave = document.getElementById("prenom");
 if (localStorage.getItem("prenom")) {
   prenomSave.value = localStorage.getItem("prenom");
@@ -129,24 +129,10 @@ valider.addEventListener("click", function() {
 
 //Verifications d'une reservation lors d'un rafraichissement
 if (sessionStorage.getItem("second")) {
-  var monTexte = sessionStorage.getItem("stationName");
-  reservationClass.verification();
+  reservationClass.verification(sessionStorage.getItem("stationName"));
   timer.startTimer(sessionStorage.getItem("second"), sessionStorage.getItem("minute"));
 }
-/*
-//Ecoute des evenement du canvas
-canvas.init();
-var canvasArea = document.getElementById("canvas");
-canvasArea.addEventListener('mousedown', canvas.engage());
-canvasArea.addEventListener('mousemove', canvas.putPoint());
-canvasArea.addEventListener('mouseup', canvas.disengage());
-canvasArea.addEventListener('mouseout', canvas.disengage());
 
-canvasArea.addEventListener('touchstart', canvas.engage());
-canvasArea.addEventListener('mousemove', canvas.putPoint());
-canvasArea.addEventListener('touchend', canvas.disengage());
-canvasArea.addEventListener('touchleave', canvas.disengage());
-*/
 //initialisation de la googleMap
 function initMap() {
   GoogleMap.initBikeMap();
