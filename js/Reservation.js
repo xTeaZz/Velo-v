@@ -1,5 +1,6 @@
 var Reservation = {
 
+    //Modification DOM lorsqu'on annule la reservation
     cancel : function () {
         document.getElementById("reservationText").textContent = "";
         document.getElementById("decompte").textContent = "";
@@ -8,6 +9,7 @@ var Reservation = {
         document.getElementById("map").style.width = "100%" ;
     },
 
+    //Modification DOM lorsqu'on valide la reservation
     validate : function () {
         var name = document.getElementById("stationName").textContent;
         var myName = localStorage.getItem("nom");
@@ -22,6 +24,7 @@ var Reservation = {
         sessionStorage.setItem("stationName", name);
     },
 
+    //Modification DOM lorsqu'on rqfrqichie lq page
     verification : function (monTexte) {
         var myName = localStorage.getItem("nom");
         var myFirstName = localStorage.getItem("prenom");

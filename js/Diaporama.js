@@ -8,6 +8,7 @@ var Diaporama = {
     document.getElementById('caption').textContent = this.tabText[this.indice];
   },
 
+  //Compte a rebours du diaporama automatique
   carousel() {
     setInterval(() => {
       if (this.indice >= (this.tabPic.length - 1)) {
@@ -18,6 +19,7 @@ var Diaporama = {
     }, 5000);
   },
 
+  //Changement d'image
   transition(deplacement) {
     this.indice = this.indice + deplacement;
     if (this.indice < 0) {

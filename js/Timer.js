@@ -1,9 +1,11 @@
 var Timer = {
 
+    //Reset le compte a rebours
     stopTimer() {
       clearInterval(this.decompte);
     },
   
+    //Lance le compte a rebours
     startTimer(second, minute) {
       var titre = document.getElementById("compteur");
       this.decompte = setInterval( () => {
