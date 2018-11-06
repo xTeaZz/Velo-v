@@ -59,8 +59,6 @@ nomSave.addEventListener("change", function() {
   localStorage.setItem("nom", nomSave.value);
 });
 
-var myName = localStorage.getItem("nom");
-var myFirstName = localStorage.getItem("prenom");
 var canvasTest = 0;
 
 //Affiche le panneau de signature et de validation avec le bouton reservation
@@ -90,12 +88,12 @@ reservation.addEventListener("click", function() {
       canvas.disengage()
     });
 
-    canvasArea.addEventListener('touchstart', function() {
+    canvasArea.addEventListener('touchstart', function(e) {
       canvasTest = 1;
       canvas.engage()
       canvas.putPoint(e);
     });
-    canvasArea.addEventListener('touchmove', function() {
+    canvasArea.addEventListener('touchmove', function(e) {
       canvas.putPoint(e)
     });
     canvasArea.addEventListener('touchend', function() {

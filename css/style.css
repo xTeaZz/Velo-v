@@ -1,6 +1,7 @@
 #slide {
   height: 87.4vh;
   width: 100%;
+  position: relative;
 }
 
 #slidepic {
@@ -11,11 +12,11 @@
 }
 
 #buttonleft {
-  left: 6em;
+  left: -6em;
 }
 
 #buttonright {
-  right: 6em;
+  right: -6em;
 }
 
 .button {
@@ -102,3 +103,32 @@
 #annulerReservation {
   visibility: hidden;
 }
+
+@media screen and (max-width: 1335px) {
+
+  #buttonleft {
+    left: 0;
+  }
+  
+  #buttonright {
+    right: 0;
+  }
+  
+}
+
+@media screen and (max-width: 1090px) {
+  #mapDiv {
+    display: block;
+  }
+
+  #info {
+    width: 100%!important;
+  }
+
+  #map {
+    width: 100%!important;
+  }
+
+
+
+} 
